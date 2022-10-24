@@ -7,7 +7,7 @@ import { catchError, retry } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class BooksService {
- url: string = 'http://openlibrary.org/search.json?q=the+lord+of+the+rings&limit=10';
+ url: string = 'https://api.escuelajs.co/api/v1/products';
  
   constructor(private http: HttpClient) {}
 

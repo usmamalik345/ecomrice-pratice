@@ -5,18 +5,11 @@ import { ContactComponent } from './components/contact/contact.component';
 import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
-  {
-    path: 'cart',
-    component: CartComponent,
-  },
-  {
-    path: 'contactus',
-    component: ContactComponent,
-  },
+  {path: 'cart', component: CartComponent,},
 
-  {
-    path: 'home', component: HomeComponent
-  },
+  {path: 'contactus', component: ContactComponent,},
+  
+  {path: '', component: HomeComponent},
 ];
 
 @NgModule({
