@@ -7,11 +7,13 @@ import { BooksService } from 'src/app/service/books.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  user: any;
+  users: any;
 
-  constructor(private userData: BooksService) {
-    userData.user().subsribe()
+  constructor(private userData: BooksService) {}
+
+  ngOnInit(): void {
+    this.userData.user().subscribe((data) => {
+      console.log('data', data);
+    });
   }
-
-  ngOnInit(): void {}
 }
