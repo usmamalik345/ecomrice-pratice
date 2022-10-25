@@ -7,7 +7,7 @@ import { catchError, retry } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class BooksService {
- url: string = 'https://api.escuelajs.co/api/v1/products';
+ url: string = 'https://api.escuelajs.co/api/v1/products?offset=0&limit=10';
  
   constructor(private http: HttpClient) {}
 

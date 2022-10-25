@@ -31,7 +31,10 @@ body {
 }
 
 
-#flexchange{
-    display: flex;
-    flex-direction: row;
+.flexchange{
+    
+  display: block;
+    /* flex-direction: row!important;
+    justify-content: center!important; */
+    /* align-items: center!important; */
 }
