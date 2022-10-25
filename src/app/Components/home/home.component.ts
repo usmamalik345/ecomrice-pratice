@@ -12,9 +12,11 @@ export class HomeComponent implements OnInit {
   constructor(private userData: BooksService) {}
 
   ngOnInit(): void {
-    this.userData.user().subscribe((data : any) => {
-      this.homeProducts= data;
-      
+    this.userData.user().subscribe((data: any) => {
+      this.homeProducts = data;
     });
+  }
+  addToCart(id: any) {
+    this.userData.productList.next(this.homeProducts);
   }
 }
