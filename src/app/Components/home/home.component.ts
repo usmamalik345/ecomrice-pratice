@@ -8,6 +8,7 @@ import { BooksService } from 'src/app/service/books.service';
 })
 export class HomeComponent implements OnInit {
   homeProducts: any;
+  currentCart: any;
 
   constructor(private userData: BooksService) {}
 
@@ -15,8 +16,12 @@ export class HomeComponent implements OnInit {
     this.userData.user().subscribe((data: any) => {
       this.homeProducts = data;
     });
+    this.userData.cart.subscribe((cartData) => {
+      this.currentCart = cartData;
+    });
   }
   addToCart(product: any) {
-    this.userData.cart.next([product]);
+    this.currentCart.push(product);
+    this.userData.cart.next(this.currentCart);
   }
 }
