@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
       this.homeProducts = data;
     });
   }
-  addToCart(id: any) {
-    this.userData.productList.next(this.homeProducts);
+  addToCart(product: any) {
+    this.userData.cart.next([product]);
   }
 }
