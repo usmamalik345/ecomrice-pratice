@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BooksService } from 'src/app/service/books.service';
+import { ProductsService } from 'src/app/service/books.service';
 
 @Component({
   selector: 'app-home',
@@ -8,20 +8,22 @@ import { BooksService } from 'src/app/service/books.service';
 })
 export class HomeComponent implements OnInit {
   homeProducts: any;
-  currentCart: any;
 
-  constructor(private userData: BooksService) {}
+  constructor(private productService: ProductsService) {
+    console.log('Home component loaded');
+  }
 
   ngOnInit(): void {
-    this.userData.user().subscribe((data: any) => {
+    this.getAllProducts();
+  }
+
+  getAllProducts() {
+    this.productService.getAllProducts().subscribe((data: any) => {
       this.homeProducts = data;
     });
-    this.userData.cart.subscribe((cartData) => {
-      this.currentCart = cartData;
-    });
   }
+
   addToCart(product: any) {
-    this.currentCart.push(product);
-    this.userData.cart.next(this.currentCart);
+    this.productService.addProductToCart(product);
   }
 }

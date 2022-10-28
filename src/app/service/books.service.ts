@@ -3,11 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { catchError, retry } from 'rxjs/operators';
-   
+
 @Injectable({
   providedIn: 'root',
 })
-export class BooksService {
+export class ProductsService {
   public cart = new BehaviorSubject<any>([]);
   public productList = new BehaviorSubject<any>([]);
 
@@ -15,11 +15,19 @@ export class BooksService {
 
   constructor(private http: HttpClient) {}
 
-  user() {
-    return this.http.get(this.url).pipe(
-      map((res) => {
-        return res;
-      })
-    );
+  getAllProducts() {
+    return this.http.get(this.url);
   }
+
+  addProductToCart(product: any) {
+    let cartValues = this.cart.value;
+    cartValues.push(product);
+    this.cart.next(cartValues);
+  }
+
+  removeFromCart(){
+    
+  }
+
+
 }

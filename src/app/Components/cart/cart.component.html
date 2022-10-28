@@ -28,7 +28,9 @@
                     $ <strong> {{ prod.price }} </strong>
                   </p>
                 </div>
-                <div class="card-read-more"></div>
+                <div class="card-read-more">
+                  <button class="btn btn-danger" (click)="removeFromCart(product)">Remove from Cart</button>
+                </div>
               </div>
             </div>
           </div>
