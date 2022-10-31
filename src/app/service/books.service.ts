@@ -10,7 +10,7 @@ import { catchError, retry } from 'rxjs/operators';
 export class ProductsService {
   public cart = new BehaviorSubject<any>([]);
   public productList = new BehaviorSubject<any>([]);
-  
+  // public cartCount = new BehaviorSubject<number>(5);
 
   url: string = 'https://api.escuelajs.co/api/v1/products?offset=0&limit=10';
 
@@ -24,6 +24,7 @@ export class ProductsService {
     let cartValues = this.cart.value;
     cartValues.push(product);
     this.cart.next(cartValues);
+    
   }
 
   removeProductFromCart(index: any) {
@@ -32,11 +33,9 @@ export class ProductsService {
     this.cart.next(cartValues);
   }
 
-  EmptytheCart(){
-    let clearCart = this.cart.value
-    clearCart = []
-    this.cart.next(clearCart)
-
-    
+  EmptytheCart() {
+    let clearCart = this.cart.value;
+    clearCart = [];
+    this.cart.next(clearCart);
   }
 }

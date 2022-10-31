@@ -1,5 +1,7 @@
 <div class="container py-5">
-  <section class="wrapper" *ngFor="let prod of products; let i = index" >
+  Cart Total Amount: ${{ totals }}
+
+  <section class="wrapper" *ngFor="let prod of products; let i = index">
     <div class="container-fostrap">
       <div class="content">
         <div class="container">
@@ -36,20 +38,17 @@
               </div>
             </div>
           </div>
-          
         </div>
       </div>
-      
     </div>
-   
   </section>
   <button
-  class="btn btn-danger 0"
-  style="width: 300px"
-  (click)="emptythewholearray()"
-
-  *ngIf="this.products.length > 0 "  >
-  Empty the whole Array
+    class="btn btn-danger 0"
+    style="width: 300px"
+    (click)="emptythewholearray()"
+    *ngIf="this.products.length > 0"
+  >
+    Empty the whole Array
   </button>
 </div>
 
@@ -73,4 +72,3 @@
 
 
 </div> -->
-
