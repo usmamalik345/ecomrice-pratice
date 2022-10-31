@@ -9,22 +9,23 @@ import { ProductsService } from 'src/app/service/books.service';
 export class CartComponent implements OnInit {
   products: any;
 
-  constructor(private productsService: ProductsService) {}
+  constructor(private  ProductsService: ProductsService) {}
 
   ngOnInit(): void {
     this.getCartProducts();
   }
 
   getCartProducts() {
-    this.productsService.cart.subscribe((products: any) => {
+    this. ProductsService.cart.subscribe((products: any) => {
       this.products = products;
     });
+  }
 
-    removeFromCart(){
-      this.productsService.removeProductFromCart()
+    removeFromCart(items: any){
+        this.ProductsService.removeProductFromCart(items)
     }
     
   }
 
 
-}
+

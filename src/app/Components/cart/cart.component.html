@@ -1,5 +1,5 @@
 <div class="container py-5">
-  <section class="wrapper" *ngFor="let prod of products">
+  <section class="wrapper" *ngFor="let prod of products; let i = index">
     <div class="container-fostrap">
       <div class="content">
         <div class="container">
@@ -29,7 +29,7 @@
                   </p>
                 </div>
                 <div class="card-read-more">
-                  <button class="btn btn-danger" (click)="removeFromCart(prodcuts)">Remove from Cart</button>
+                  <button class="btn btn-danger" (click)="removeFromCart(i)">Remove from Cart</button>
                 </div>
               </div>
             </div>

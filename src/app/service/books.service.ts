@@ -25,12 +25,11 @@ export class ProductsService {
     this.cart.next(cartValues);
   }
 
-  removeProductFromCart(product: any){
-      let cartdelteValue = this.cart.value
-      cartdelteValue.splice(product)
-      this.cart.next(cartdelteValue)
+  removeProductFromCart(index: any) {
+    let cartValues = this.cart.value;
+    console.log(cartValues);
 
+    this.cart.value.splice(index, 1);
+    this.cart.next(cartValues);
   }
-
-
 }
