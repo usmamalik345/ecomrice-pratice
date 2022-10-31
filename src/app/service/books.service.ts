@@ -27,9 +27,13 @@ export class ProductsService {
 
   removeProductFromCart(index: any) {
     let cartValues = this.cart.value;
-    console.log(cartValues);
-
     this.cart.value.splice(index, 1);
     this.cart.next(cartValues);
+  }
+
+  EmptytheCart(){
+    let clearCart = this.cart.value
+    clearCart = []
+    this.cart.next(clearCart)
   }
 }

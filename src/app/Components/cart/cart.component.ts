@@ -24,6 +24,10 @@ export class CartComponent implements OnInit {
     removeFromCart(items: any){
         this.ProductsService.removeProductFromCart(items)
     }
+
+    emptythewholearray(){
+      this.ProductsService.EmptytheCart()
+    }
     
   }
 

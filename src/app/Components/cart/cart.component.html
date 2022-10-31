@@ -29,7 +29,9 @@
                   </p>
                 </div>
                 <div class="card-read-more">
-                  <button class="btn btn-danger" (click)="removeFromCart(i)">Remove from Cart</button>
+                  <button class="btn btn-danger" (click)="removeFromCart(i)">
+                    Remove from Cart
+                  </button>
                 </div>
               </div>
             </div>
@@ -37,5 +39,13 @@
         </div>
       </div>
     </div>
+    
   </section>
+  <button
+      class="btn btn-danger 0"
+      style="width: 300px"
+      (click)="emptythewholearray()"
+    >
+      Empty the whole Array
+    </button>
 </div>
