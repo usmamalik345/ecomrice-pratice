@@ -10,6 +10,7 @@ import { catchError, retry } from 'rxjs/operators';
 export class ProductsService {
   public cart = new BehaviorSubject<any>([]);
   public productList = new BehaviorSubject<any>([]);
+  
 
   url: string = 'https://api.escuelajs.co/api/v1/products?offset=0&limit=10';
 
@@ -35,5 +36,7 @@ export class ProductsService {
     let clearCart = this.cart.value
     clearCart = []
     this.cart.next(clearCart)
+
+    
   }
 }

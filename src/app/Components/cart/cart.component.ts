@@ -7,7 +7,9 @@ import { ProductsService } from 'src/app/service/books.service';
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
-  products: any;
+  products: any = [];
+
+  isButtonVisible = true;
 
   constructor(private  ProductsService: ProductsService) {}
 
@@ -27,6 +29,7 @@ export class CartComponent implements OnInit {
 
     emptythewholearray(){
       this.ProductsService.EmptytheCart()
+      this.isButtonVisible = false
     }
     
   }

@@ -1,5 +1,5 @@
 <div class="container py-5">
-  <section class="wrapper" *ngFor="let prod of products; let i = index">
+  <section class="wrapper" *ngFor="let prod of products; let i = index" >
     <div class="container-fostrap">
       <div class="content">
         <div class="container">
@@ -36,16 +36,41 @@
               </div>
             </div>
           </div>
+          
         </div>
       </div>
+      
     </div>
-    
+   
   </section>
   <button
-      class="btn btn-danger 0"
-      style="width: 300px"
-      (click)="emptythewholearray()"
-    >
-      Empty the whole Array
-    </button>
+  class="btn btn-danger 0"
+  style="width: 300px"
+  (click)="emptythewholearray()"
+
+  *ngIf="this.products.length > 0 "  >
+  Empty the whole Array
+  </button>
 </div>
+
+<!-- <div class="col-md-12" >
+					
+  <div class="card">
+<div class="card-header">
+<h5>Cart</h5>
+</div>
+<div class="card-body cart" *ngIf="true">
+    <div class="col-sm-12 empty-cart-cls text-center">
+      <img src="https://i.imgur.com/dCdflKN.png" width="130" height="130" class="img-fluid mb-4 mr-3">
+      <h3><strong>Your Cart is Empty</strong></h3>
+      <h4>Add something to make me happy :)</h4>
+      <a href="#" class="btn btn-primary cart-btn-transform m-3" data-abc="true">continue shopping</a>
+      
+    
+    </div>
+</div>
+</div>
+
+
+</div> -->
+
