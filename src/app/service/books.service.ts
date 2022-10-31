@@ -25,8 +25,9 @@ export class ProductsService {
     this.cart.next(cartValues);
   }
 
-  removeFromCart(){
-    
+  removeProductFromCart(){
+      
+
   }
 
 
