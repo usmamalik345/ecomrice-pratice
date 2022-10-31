@@ -25,8 +25,10 @@ export class ProductsService {
     this.cart.next(cartValues);
   }
 
-  removeProductFromCart(){
-      
+  removeProductFromCart(product: any){
+      let cartdelteValue = this.cart.value
+      cartdelteValue.splice(product)
+      this.cart.next(cartdelteValue)
 
   }
 
