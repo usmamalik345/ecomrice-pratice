@@ -42,4 +42,9 @@ export class CartComponent implements OnInit {
     this.ProductsService.EmptytheCart();
     this.isButtonVisible = false;
   }
+
+  incrementItem(){ 
+    
+    
+  }
 }

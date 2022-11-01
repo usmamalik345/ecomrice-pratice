@@ -87,11 +87,12 @@
                 </div>
               </td>
               <td data-th="Price">{{ prod.price }}</td>
-              <td data-th="Quantity">
+              <td data-th="Quantity" (click)="incrementItem()">
                 <input
                   type="number"
                   class="form-control form-control-lg text-center"
                   value="1"
+                  
                 />
               </td>
               <td class="actions" data-th="">
