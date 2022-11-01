@@ -7,8 +7,7 @@ import { ProductsService } from 'src/app/service/books.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  count: number = 0;
-  totals = 0;
+  
 
   constructor(private ProductsService: ProductsService) {
     // this.ProductsService.addProductToCart()
@@ -19,9 +18,6 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.ProductsService.cart.subscribe((products) => {
-      this.count = products.length;
-      
-    });
+    
   }
 }

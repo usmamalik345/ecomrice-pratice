@@ -8,6 +8,8 @@ import { ProductsService } from 'src/app/service/books.service';
 })
 export class CartComponent implements OnInit {
   products: any = [];
+  count: number = 0;
+  totalss = 0;
 
   isButtonVisible = true;
   totals = 0;
@@ -15,6 +17,10 @@ export class CartComponent implements OnInit {
   constructor(private ProductsService: ProductsService) {}
 
   ngOnInit(): void {
+    this.ProductsService.cart.subscribe((products) => {
+      this.count = products.length;
+      
+    });
     this.getCartProducts();
   }
 
