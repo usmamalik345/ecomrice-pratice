@@ -22,27 +22,17 @@ export class ProductsService {
 
   addProductToCart(product: any) {
     let cartValues = this.cart.value;
-      // const selectedProruct = cartValues.filter((eachProduct: any) => {
-      //   return eachProduct.id === product.id
-      // }) 
-      // console.log( selectedProruct);
 
-    if (product <= 1 ) {
-      alert("cart is full")
+    let exists = cartValues.find(
+      (eachProduct: any) => eachProduct.id == product.id
+    );
+
+    if (exists) {
+      exists.quantity++;
     } else {
-      cartValues.push({...product , quantity: 1});
-      this.cart.next(cartValues);
+      cartValues.push({ ...product, quantity: 1 });
     }
-      
-     
-     
-  
-    
-   
-
-   
-   
-    
+    this.cart.next(cartValues);
   }
 
   removeProductFromCart(index: any) {
