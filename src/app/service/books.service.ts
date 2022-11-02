@@ -22,7 +22,8 @@ export class ProductsService {
 
   addProductToCart(product: any) {
     let cartValues = this.cart.value;
-    cartValues.push(product);
+     
+    cartValues.push({...product , quantity:1});
     this.cart.next(cartValues);
     
   }

@@ -10,7 +10,7 @@ export class CartComponent implements OnInit {
   products: any = [];
   count: number = 0;
   totalss = 0;
-
+  sum = 0;
   isButtonVisible = true;
   totals = 0;
 
@@ -19,7 +19,6 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this.ProductsService.cart.subscribe((products) => {
       this.count = products.length;
-      
     });
     this.getCartProducts();
   }
@@ -27,11 +26,16 @@ export class CartComponent implements OnInit {
   getCartProducts() {
     this.ProductsService.cart.subscribe((products: any) => {
       this.products = products;
-      this.totals = products.reduce(
-        (carry: number, item: any) => (carry += item.price),
-        0
-      );
+      this.calcTotals();
     });
+  }
+
+  public calcTotals() {
+    console.log(123);
+    this.totals = this.products.reduce(
+      (carry: number, item: any) => (carry += item.price * item.quantity),
+      0
+    );
   }
 
   removeFromCart(items: any) {
@@ -43,8 +47,9 @@ export class CartComponent implements OnInit {
     this.isButtonVisible = false;
   }
 
-  incrementItem(){ 
-    
-    
+  incrementItem(item: any) {
+    // this.sum = this.totals + (this.products *   )
+    item.quantity++;
+    this.calcTotals();
   }
 }
