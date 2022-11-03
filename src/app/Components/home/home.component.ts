@@ -8,6 +8,9 @@ import { ProductsService } from 'src/app/service/books.service';
 })
 export class HomeComponent implements OnInit {
   homeProducts: any;
+  stars: number[] = [1, 2, 3, 4, 5];
+  selectedValue:  number = 0;
+
 
   constructor(private productService: ProductsService) {
     console.log('Home component loaded');
@@ -26,4 +29,9 @@ export class HomeComponent implements OnInit {
   addToCart(product: any) {
     this.productService.addProductToCart(product);
   }
+
+   countStar(star : number) {
+      this.selectedValue =  star;
+      console.log('Value of star', star);
+    }
 }
