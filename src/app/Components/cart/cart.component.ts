@@ -49,12 +49,7 @@ export class CartComponent implements OnInit {
 
   incrementItem(item: any) {
     // this.sum = this.totals + (this.products *   )
-    if (item.quantity < 0) {
-     item.quantity = 0
-    }else {
-      item.quantity++;
-      this.calcTotals();
-    }
-    
+    item.quantity++;
+    this.calcTotals();
   }
 }
