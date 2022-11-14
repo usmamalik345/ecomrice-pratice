@@ -8,13 +8,19 @@ import { ProductsService } from 'src/app/service/books.service';
 })
 export class HomeComponent implements OnInit {
   homeProducts: any;
-  stars: number[] = [1, 2, 3, 4, 5];
+  rating = 0 
+  starCount = 5 
+  ratingArr: boolean[] = []
   selectedValue:  number = 0;
 
 
   constructor(private productService: ProductsService) {
     console.log('Home component loaded');
+
+    this.ratingArr = Array(this.countStar).fill(false)
+
   }
+  
 
   ngOnInit(): void {
     this.getAllProducts();
@@ -34,4 +40,5 @@ export class HomeComponent implements OnInit {
       this.selectedValue =  star;
       console.log('Value of star', star);
     }
+
 }
