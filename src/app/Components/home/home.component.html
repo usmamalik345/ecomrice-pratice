@@ -1,22 +1,17 @@
 <div class="container py-5">
-  <section class="wrapper" *ngFor="let products of homeProducts">
+  <section class="wrapper" *ngFor="let products of homeProducts | filter: searchText">
     <div class="container-fostrap">
       <div class="content">
         <div class="container">
           <div class="row">
             <div class="col-xs-12 col-sm-4">
               <div class="card">
-                <a
-                  class="img-card"
-                  href="http://www.fostrap.com/2016/03/bootstrap-3-carousel-fade-effect.html"
-                >
+                <a class="img-card" href="http://www.fostrap.com/2016/03/bootstrap-3-carousel-fade-effect.html">
                   <img src="{{ products.category.image }}" />
                 </a>
                 <div class="card-content">
                   <h4 class="card-title">
-                    <a
-                      href="http://www.fostrap.com/2016/03/bootstrap-3-carousel-fade-effect.html"
-                    >
+                    <a href="http://www.fostrap.com/2016/03/bootstrap-3-carousel-fade-effect.html">
                       {{ products.title }}
                     </a>
                   </h4>
@@ -27,16 +22,13 @@
                   <p>
                     $ <strong> {{ products.price }} </strong>
                   </p>
-                   
+
                   <!-- <span class="rate" *ngFor="let star of stars; let i = index"><i  class="selected" (click)="countStar(star)" [ngClass]="{'selected' : (star <= selectedValue)}"  >★</i></span> -->
 
                 </div>
                 <div class="card-read-more">
-                  <button
-                    class="btn"
-                    style="color: black; font-size: 20px; font-weight: 600"
-                    (click)="addToCart(products)"
-                  >
+                  <button class="btn" style="color: black; font-size: 20px; font-weight: 600"
+                    (click)="addToCart(products)">
                     Add To Cart
                   </button>
                 </div>

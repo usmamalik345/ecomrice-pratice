@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/service/books.service';
+import { SearchService } from 'src/app/service/search.service';
 
 @Component({
   selector: 'app-home',
@@ -12,18 +13,21 @@ export class HomeComponent implements OnInit {
   starCount = 5 
   ratingArr: boolean[] = []
   selectedValue:  number = 0;
+  searchText: string = '';
 
-
-  constructor(private productService: ProductsService) {
+  constructor(private productService: ProductsService, private searchService: SearchService, ) {
     console.log('Home component loaded');
 
-    this.ratingArr = Array(this.countStar).fill(false)
+    // this.ratingArr = Array(this.countStar).fill(false)
 
   }
   
 
   ngOnInit(): void {
     this.getAllProducts();
+    this.searchService.subject.subscribe(
+      (search) => (this.searchText = search)
+    );
   }
 
   getAllProducts() {
