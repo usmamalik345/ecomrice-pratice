@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "storeproject-e5a65": {
+      "hosting": {
+        "my-first-project": [
+          "storeproject-e5a65"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "storeproject-e5a65"
+  }
+}

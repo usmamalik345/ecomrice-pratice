@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/service/books.service';
 import { SearchService } from 'src/app/service/search.service';
 
+
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -14,6 +16,10 @@ export class HomeComponent implements OnInit {
   ratingArr: boolean[] = []
   selectedValue:  number = 0;
   searchText: string = '';
+ 
+  
+
+
 
   constructor(private productService: ProductsService, private searchService: SearchService, ) {
     console.log('Home component loaded');
