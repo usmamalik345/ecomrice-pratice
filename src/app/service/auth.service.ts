@@ -30,7 +30,7 @@ export class AuthService {
       },
       (error) => {
         alert('something went wrong');
-        this.router.navigate(['/registor']);
+       
       }
     );
   }

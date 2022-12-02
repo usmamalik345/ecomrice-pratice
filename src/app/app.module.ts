@@ -19,6 +19,7 @@ import { LoginComponent } from './Components/login/login.component';
 import { RegistorComponent } from './Components/registor/registor.component';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 
+
 @NgModule({
   declarations: [
     AppComponent,
