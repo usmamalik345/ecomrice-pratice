@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/service/books.service';
+import { ReviewService } from 'src/app/service/review.service';
 import { SearchService } from 'src/app/service/search.service';
 
 
@@ -21,10 +22,10 @@ export class HomeComponent implements OnInit {
 
 
 
-  constructor(private productService: ProductsService, private searchService: SearchService, ) {
+  constructor(private productService: ProductsService, private searchService: SearchService, private review: ReviewService) {
     console.log('Home component loaded');
 
-    // this.ratingArr = Array(this.countStar).fill(false)
+    this.ratingArr = Array(this.starCount).fill(false)
 
   }
   
@@ -35,6 +36,7 @@ export class HomeComponent implements OnInit {
       (search) => (this.searchText = search)
     );
   }
+    
 
   getAllProducts() {
     this.productService.getAllProducts().subscribe((data: any) => {
@@ -46,9 +48,33 @@ export class HomeComponent implements OnInit {
     this.productService.addProductToCart(product);
   }
 
-   countStar(star : number) {
-      this.selectedValue =  star;
-      console.log('Value of star', star);
+   countStar(i:any) {
+    if(i)  {
+    return "★"
+    } else {
+      return "☆"
     }
+}
+onClick(i: any, star:any){
+  this.rating=0;
+  i.filter((val:any)=>{
+    if(val==true){
+      this.rating=this.rating+1
+    }
+
+  })
+  if(star){
+    this.rating=+1  
+    star = "★"
+  }else{
+    if (this.rating != 0 ) {
+      this.rating=-1   
+    }
+   
+  }
+  this.review.reviewPorduct(this.rating).subscribe((res) =>{
+    return res
+  })
+}
 
 }

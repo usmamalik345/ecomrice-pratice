@@ -1,4 +1,9 @@
+
+
 {
+    
+  
+
   "hosting": {
     "target": "my-first-project",
     "public": "dist/my-first-project",
@@ -13,6 +18,7 @@
             "key": "Cache-Control",
             "value": "public,max-age=31536000,immutable"
           }
+          
         ]
       },
       {
@@ -31,5 +37,7 @@
         "destination": "/index.html"
       }
     ]
-  }
+  } 
+  
+
 }

@@ -18,7 +18,7 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { LoginComponent } from './Components/login/login.component';
 import { RegistorComponent } from './Components/registor/registor.component';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
-
+import { ReviewService } from './service/review.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +32,7 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
     RegistorComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule , Ng2SearchPipeModule, provideFirebaseApp(() => initializeApp(environment.firebase)), provideAuth(() => getAuth()), provideFirestore(() => getFirestore())],
-  providers: [ { provide: FIREBASE_OPTIONS, useValue: environment.firebase }],
+  providers: [ { provide: FIREBASE_OPTIONS, useValue: environment.firebase } , ReviewService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
