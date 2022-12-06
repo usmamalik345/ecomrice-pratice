@@ -72,7 +72,7 @@ onClick(i: any, star:any){
     }
    
   }
-  this.review.reviewPorduct(this.rating).subscribe((res) =>{
+  this.review.reviewPorduct({productId:'1',rating:this.rating}).subscribe((res) =>{
     return res
   })
 }
