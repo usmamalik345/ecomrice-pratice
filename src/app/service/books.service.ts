@@ -12,7 +12,7 @@ export class ProductsService {
   public productList = new BehaviorSubject<any>([]);
   // public cartCount = new BehaviorSubject<number>(5);
 
-  url: string = 'https://api.escuelajs.co/api/v1/products?offset=0&limit=10';
+  url: string = 'https://fakestoreapi.com/products';
 
   constructor(private http: HttpClient) {}
 
