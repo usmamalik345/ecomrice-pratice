@@ -1,0 +1,30 @@
+<section class="dark">
+	<div class="container py-4">
+		<h1 class="h1 text-center" id="pageHeaderTitle"></h1>
+
+		<article class="postcard  white">
+			<a class="postcard__img_link" href="#">
+				<img class="postcard__img" src="{{selectproduct.image}}" alt="Image Title" />
+			</a>
+			<div class="postcard__text">
+				<h1 class="postcard__title blue"><a href="#">{{selectproduct.title}}</a></h1>
+				
+				<div class="postcard__bar"></div>
+				<div class="postcard__preview-txt"> {{selectproduct.description}}</div>
+				<ul class="postcard__tagbox">
+					<li class="tag__item"><i class="fas fa-tag mr-2"></i> {{selectproduct.price}}</li>
+					<li class="tag__item"><i class="fas fa-clock mr-2"></i>{{selectproduct.category}}</li>
+					
+				</ul>
+				<button class="btn" style="color: black; font-size: 20px; font-weight: 600; border: 1px solid white; width: 200px;" (click)="addToCartselectproduct()">
+					Add To Cart
+				  </button>
+			</div>
+		</article>
+		
+		
+		
+	</div>
+</section>
+
+

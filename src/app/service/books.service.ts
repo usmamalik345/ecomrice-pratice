@@ -19,7 +19,11 @@ export class ProductsService {
   getAllProducts() {
     return this.http.get(this.url);
   }
-
+  
+  getSelectedProduct(id :any){
+    return this.http.get(this.url + "/" +  id);
+  }
+   
   addProductToCart(product: any) {
     let cartValues = this.cart.value;
 
@@ -35,7 +39,7 @@ export class ProductsService {
     this.cart.next(cartValues);
   }
 
-  removeProductFromCart(index: any) {
+ removeProductFromCart(index: any) {
     let cartValues = this.cart.value;
     this.cart.value.splice(index, 1);
     this.cart.next(cartValues);

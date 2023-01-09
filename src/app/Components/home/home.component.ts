@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/service/books.service';
 import { ReviewService } from 'src/app/service/review.service';
 import { SearchService } from 'src/app/service/search.service';
-
-
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -11,24 +10,23 @@ import { SearchService } from 'src/app/service/search.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  homeProducts: any;
-  rating = 0 
-  starCount = 5 
-  ratingArr: boolean[] = []
-  selectedValue:  number = 0;
+  homeProducts: any = [];
+  rating = 0;
+  starCount = 5;
+  ratingArr: boolean[] = [];
+  selectedValue: number = 0;
   searchText: string = '';
- 
-  
 
-
-
-  constructor(private productService: ProductsService, private searchService: SearchService, private review: ReviewService) {
+  constructor(
+    private productService: ProductsService,
+    private searchService: SearchService,
+    private review: ReviewService,
+    private router: Router
+  ) {
     console.log('Home component loaded');
 
-    this.ratingArr = Array(this.starCount).fill(false)
-
+    this.ratingArr = Array(this.starCount).fill(false);
   }
-  
 
   ngOnInit(): void {
     this.getAllProducts();
@@ -36,8 +34,9 @@ export class HomeComponent implements OnInit {
       (search) => (this.searchText = search)
     );
   }
-    
-
+  // deatailpage(id: any) {
+  //   this.router.navigate(['/detailcard/' + id]);
+  // }
   getAllProducts() {
     this.productService.getAllProducts().subscribe((data: any) => {
       this.homeProducts = data;
@@ -48,33 +47,32 @@ export class HomeComponent implements OnInit {
     this.productService.addProductToCart(product);
   }
 
-   countStar(i:any) {
-    if(i)  {
-    return "★"
+  countStar(i: any) {
+    if (i) {
+      return '★';
     } else {
-      return "☆"
+      return '☆';
     }
-}
-onClick(i: any, star:any){
-  this.rating=0;
-  i.filter((val:any)=>{
-    if(val==true){
-      this.rating=this.rating+1
-    }
-
-  })
-  if(star){
-    this.rating=+1  
-    star = "★"
-  }else{
-    if (this.rating != 0 ) {
-      this.rating=-1   
-    }
-   
   }
-  this.review.reviewPorduct({productId:'1',rating:this.rating}).subscribe((res) =>{
-    return res
-  })
-}
-
+  onClick(i: any, star: any) {
+    this.rating = 0;
+    i.filter((val: any) => {
+      if (val == true) {
+        this.rating = this.rating + 1;
+      }
+    });
+    if (star) {
+      this.rating = +1;
+      star = '★';
+    } else {
+      if (this.rating != 0) {
+        this.rating = -1;
+      }
+    }
+    this.review
+      .reviewPorduct({ productId: '1', rating: this.rating })
+      .subscribe((res) => {
+        return res;
+      });
+  }
 }
