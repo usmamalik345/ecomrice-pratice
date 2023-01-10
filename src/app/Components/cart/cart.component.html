@@ -120,7 +120,7 @@
                       />
                       </td>
                       <td class="col-sm-1 col-md-1 text-center"><strong>${{ prod.price }}</strong></td>
-                      <td class="col-sm-1 col-md-1 text-center" ><strong > 
+                      <td class="col-sm-1 col-md-1 text-center" >{{prod.price * prod.quantity}} <strong > 
                        
                       </strong></td>
                       <td class="col-sm-1 col-md-1"  (click)="removeFromCart(i)">
@@ -141,14 +141,14 @@
                       <td>   </td>
                       <td>   </td>
                       <td><h5>Estimated shipping</h5></td>
-                      <td class="text-right"><h5><strong>$6.94</strong></h5></td>
+                      <td class="text-right"><h5><strong>${{ shippingCost}}</strong></h5></td>
                   </tr>
                   <tr>
                       <td>   </td>
                       <td>   </td>
                       <td>   </td>
                       <td><h3>Total</h3></td>
-                      <td class="text-right"><h3><strong></strong></h3></td>
+                      <td class="text-right"><h3><strong >${{totalwithshippingcast}}</strong></h3></td>
                   </tr>
                   <tr>
                       <td>   </td>
