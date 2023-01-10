@@ -20,6 +20,7 @@ import { RegistorComponent } from './Components/registor/registor.component';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { ReviewService } from './service/review.service';
 import { DeatailCardComponent } from './Components/deatail-card/deatail-card.component';
+import { SpinnerComponent } from './Components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { DeatailCardComponent } from './Components/deatail-card/deatail-card.com
     LoginComponent,
     RegistorComponent,
     DeatailCardComponent,
+    SpinnerComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule , Ng2SearchPipeModule, provideFirebaseApp(() => initializeApp(environment.firebase)), provideAuth(() => getAuth()), provideFirestore(() => getFirestore())],
   providers: [ { provide: FIREBASE_OPTIONS, useValue: environment.firebase } , ReviewService],

@@ -10,6 +10,8 @@ export class SearchService {
 
   search(string: any) {
     this.subject.next(string);
+    
+    
   }
 
 

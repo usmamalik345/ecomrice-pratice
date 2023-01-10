@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, scan, tap } from 'rxjs/operators';
 import { catchError, retry } from 'rxjs/operators';
+import { SpinnerService } from './spinner.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,10 +15,15 @@ export class ProductsService {
 
   url: string = 'https://fakestoreapi.com/products';
 
-  constructor(private http: HttpClient) {}
-
+  constructor(private http: HttpClient, private spinnerService: SpinnerService) {
+  }
+  
+  
   getAllProducts() {
-    return this.http.get(this.url);
+    this.spinnerService.requestStart();
+    return this.http.get(this.url).pipe(
+      tap(() => this.spinnerService.requestEnded()));
+    
   }
   
   getSelectedProduct(id :any){
