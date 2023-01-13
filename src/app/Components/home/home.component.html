@@ -1,45 +1,4 @@
-<!-- <div >
-  <section class="wrapper" *ngFor="let products of homeProducts | filter: searchText">
-    <div class="container-fostrap">
-      <div class="content">
-        <div class="container">
-          <div class="row">
-            <div class="col-xs-12 col-sm-4">
-              <div class="card">
-                <a class="img-card" href="http://www.fostrap.com/2016/03/bootstrap-3-carousel-fade-effect.html">
-                  <img src="{{ products.image }}" />
-                </a>
-                <div class="card-content">
-                  <h4 class="card-title">
-                    <a href="http://www.fostrap.com/2016/03/bootstrap-3-carousel-fade-effect.html">
-                      {{ products.title }}
-                    </a>
-                  </h4>
-                  <p class="">
-                    {{ products.description }}
-                  </p>
 
-                  <p>
-                    $ <strong> {{ products.price }} </strong>
-                  </p>
-
-                  <span class="rate"  > {{products.rating.rate}} </span>
-
-                </div>
-                <div class="card-read-more">
-                  <button class="btn" style="color: black; font-size: 20px; font-weight: 600"
-                    (click)="addToCart(products)">
-                    Add To Cart
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-</div> -->
 <div id="cardbody">
   <div class="card rounded shadow-sm border-0 " *ngFor="let products of homeProducts; let i = index"
     style="width: 600px; margin-top: 10px; " [routerLink]="[ '/detailcard', products.id ]">

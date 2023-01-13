@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 
 
@@ -81,5 +82,234 @@
               </tbody>
           </table>
       </div>
+=======
+<!-- <section class="pt-5 pb-5">
+  <div class="container">
+    <div class="row w-100">
+      <div class="col-lg-12 col-md-12 col-12">
+        <h3 class="display-5 mb-2 text-center">Shopping Cart</h3>
+        <p class="mb-5 text-center">
+          <i class="text-info font-weight-bold"> {{ count }}</i> items in your
+          cart
+        </p>
+        <table
+          id="shoppingCart"
+          class="table table-condensed table-responsive"
+          
+        >
+          <thead>
+            <tr>
+              <th style="width: 60%">{{ prod.title }}</th>
+              <th style="width: 12%"></th>
+              <th style="width: 10%">Quantity</th>
+              <th style="width: 16%"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-th="Product">
+                <div class="row">
+                  <div class="col-md-3 text-left">
+                    <img
+                      src="{{ prod.category.image }}"
+                      alt=""
+                      class="img-fluid d-none d-md-block rounded mb-2 shadow"
+                    />
+                  </div>
+                  <div class="col-md-9 text-left mt-sm-2">
+                    <h4>{{ prod.title }}</h4>
+                    <p class="font-weight-light">{{ prod.description }}</p>
+                  </div>
+                </div>
+              </td>
+              <td data-th="Price">{{ prod.price }}</td>
+              <td data-th="Quantity">
+                <input
+                  type="number"
+                  class="form-control form-control-lg text-center"
+                  name="quantity"
+                  [(ngModel)]="prod.quantity"
+                  (change)="calcTotals()"
+                />
+              </td>
+              <td class="actions" data-th="">
+                <div class="text-right">
+                  <button
+                    class="btn btn-white border-secondary bg-white btn-md mb-2"
+                  >
+                    <i class="fas fa-sync"></i>
+                  </button>
+                  <button
+                    class="btn btn-white border-secondary bg-white btn-md mb-2"
+                  >
+                    <i class="fas fa-trash" (click)="removeFromCart(i)"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>   
+        <div class="float-right text-right">
+          <h4>Subtotal:</h4>
+          <h1>${{ totals }}</h1>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-4 d-flex align-items-center">
+      <div class="col-sm-6 order-md-2 text-right">
+        <a
+          routerLink="/"
+          class="btn btn-primary mb-4 btn-lg pl-5 pr-5"
+          (click)="emptythewholearray()"
+          *ngIf="this.products.length > 0"
+          >Empty your Cart
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+  -->
+
+<div class="container" *ngIf="products.length > 0">
+  <div class="row">
+    <div class="col-sm-12 col-md-10 col-md-offset-1">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th class="text-center">Price</th>
+            <th class="text-center">Total</th>
+            <th> </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let prod of products; let i = index">
+            <td class="col-sm-8 col-md-6">
+              <div class="media">
+                <a class="thumbnail pull-left" href="#">
+                  <img
+                    class="media-object"
+                    src="{{ prod.category.image }}"
+                    style="width: 72px; height: 72px"
+                  />
+                </a>
+                <div class="media-body">
+                  <h4 class="media-heading">
+                    <a href="#">{{ prod.title }}</a>
+                  </h4>
+                  <h5 class="media-heading">by <a href="#">Brand name</a></h5>
+                  <span>Status: </span
+                  ><span class="text-success"><strong>In Stock</strong></span>
+                </div>
+              </div>
+            </td>
+            <td class="col-sm-1 col-md-1" style="text-align: center">
+              <input
+                type="number"
+                class="form-control form-control-lg text-center"
+                name="quantity"
+                [(ngModel)]="prod.quantity"
+                (change)="calcTotals()"
+              />
+            </td>
+            <td class="col-sm-1 col-md-1 text-center">
+              <strong>${{ prod.price }}</strong>
+            </td>
+            <td class="col-sm-1 col-md-1 text-center">
+              {{ prod.price * prod.quantity }} <strong> </strong>
+            </td>
+            <td class="col-sm-1 col-md-1" (click)="removeFromCart(i)">
+              <button type="button" class="btn btn-danger">
+                <span class="glyphicon glyphicon-remove"></span> Remove
+              </button>
+            </td>
+          </tr>
+
+          <tr>
+            <td> </td>
+            <td> </td>
+            <td> </td>
+            <td><h5>Subtotal</h5></td>
+            <td class="text-right">
+              <h5>
+                <strong> ${{ totals }}</strong>
+              </h5>
+            </td>
+          </tr>
+          <tr>
+            <td> </td>
+            <td> </td>
+            <td> </td>
+            <td><h5>Estimated shipping</h5></td>
+            <td class="text-right">
+              <h5>
+                <strong>${{ shippingCost }}</strong>
+              </h5>
+            </td>
+          </tr>
+          <tr>
+            <td> </td>
+            <td> </td>
+            <td> </td>
+            <td><h3>Total</h3></td>
+            <td class="text-right">
+              <h3>
+                <strong>${{ totalwithshippingcast }}</strong>
+              </h3>
+            </td>
+          </tr>
+          <tr>
+            <td> </td>
+            <td> </td>
+            <td> </td>
+            <td>
+              <button type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-shopping-cart"></span> Continue
+                Shopping
+              </button>
+            </td>
+            <td>
+              <button type="button" class="btn btn-success">
+                Checkout <span class="glyphicon glyphicon-play"></span>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+>>>>>>> 2713e192ee3827eb22320fe01f685f0958a260f5
+  </div>
+</div>
+
+<div *ngIf="products.length === 0">
+  <div class="container-fluid mt-100">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h5>Cart</h5>
+          </div>
+          <div class="card-body cart">
+            <div class="col-sm-12 empty-cart-cls text-center">
+              <img
+                src="https://i.imgur.com/dCdflKN.png"
+                width="130"
+                height="130"
+                class="img-fluid mb-4 mr-3"
+              />
+              <h3><strong>Your Cart is Empty</strong></h3>
+              <h4>Add something to make me happy :)</h4>
+              <a
+                href="#"
+                class="btn btn-primary cart-btn-transform m-3"
+                data-abc="true"
+                >continue shopping</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
