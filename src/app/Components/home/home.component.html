@@ -1,6 +1,6 @@
 
 <div id="cardbody">
-  <div class="card rounded shadow-sm border-0 " *ngFor="let products of homeProducts; let i = index"
+  <div class="card rounded shadow-sm border-0 " *ngFor="let products of homeProducts let i = index "
     style="width: 600px; margin-top: 10px; " [routerLink]="[ '/detailcard', products.id ]">
     <div class="card-body p-4"><img src="{{ products.image }}" alt="" class="img-fluid d-block mx-auto mb-3"
         style="width: 100px; height: 100px;">

@@ -38,14 +38,10 @@ export class CartComponent implements OnInit {
       (carry: number, item: any) => (carry += item.price * item.quantity ),
       0
     );
-<<<<<<< HEAD
+
 
     this.totalwithshippingcast = this.totals + this.shippingCost
-    
-
-=======
-        
->>>>>>> 2713e192ee3827eb22320fe01f685f0958a260f5
+      
   }
 
   removeFromCart(items: any) {

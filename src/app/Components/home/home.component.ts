@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
   ratingArr: boolean[] = [];
   selectedValue: number = 0;
   searchText: string = '';
+  
 
   constructor(
     private productService: ProductsService,
@@ -30,9 +31,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllProducts();
-    this.searchService.subject.subscribe(
-      (search) => (this.searchText = search)
-    );
+   this.searchText.toLocaleLowerCase()
   }
   // deatailpage(id: any) {
   //   this.router.navigate(['/detailcard/' + id]);
@@ -42,6 +41,7 @@ export class HomeComponent implements OnInit {
       this.homeProducts = data;
     });
   }
+  
 
   addToCart(product: any) {
     this.productService.addProductToCart(product);

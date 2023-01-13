@@ -28,4 +28,5 @@ export class HeaderComponent implements OnInit {
   search(event: any) {
     this.searchService.search(event.target.value)
   }
+ 
 }
