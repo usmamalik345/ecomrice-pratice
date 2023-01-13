@@ -8,14 +8,14 @@ import { SearchService } from 'src/app/service/search.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  
-   
   searchfilter = '';
   homeProducts: any;
 
-  constructor(private ProductsService: ProductsService,
-    public searchService: SearchService
-    ) {
+  constructor(
+    private ProductsService: ProductsService,
+    public searchService: SearchService,
+    
+  ) {
     // this.ProductsService.addProductToCart()
     // this.ProductsService.cartCount.subscribe((res) => {
     //   this.count = res;
@@ -23,15 +23,9 @@ export class HeaderComponent implements OnInit {
     // this.ProductsService.cartCount.next(this.count)
   }
 
-  ngOnInit(): void {
-
-    
-  }
-
+  ngOnInit(): void {}
 
   search(event: any) {
-    this.searchService.search(event.target.value);
-    console.log(event , "jeee");
-    
+    this.searchService.search(event.target.value)
   }
 }

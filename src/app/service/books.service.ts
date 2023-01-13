@@ -29,7 +29,9 @@ export class ProductsService {
   getSelectedProduct(id :any){
     return this.http.get(this.url + "/" +  id);
   }
-   
+  
+ 
+
   addProductToCart(product: any) {
     let cartValues = this.cart.value;
 
