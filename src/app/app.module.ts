@@ -21,6 +21,7 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { ReviewService } from './service/review.service';
 import { DeatailCardComponent } from './Components/deatail-card/deatail-card.component';
 import { SpinnerComponent } from './Components/spinner/spinner.component';
+import { CheckoutComponent } from './Components/checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { SpinnerComponent } from './Components/spinner/spinner.component';
     RegistorComponent,
     DeatailCardComponent,
     SpinnerComponent,
+    CheckoutComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule , Ng2SearchPipeModule, provideFirebaseApp(() => initializeApp(environment.firebase)), provideAuth(() => getAuth()), provideFirestore(() => getFirestore())],
   providers: [ { provide: FIREBASE_OPTIONS, useValue: environment.firebase } , ReviewService],

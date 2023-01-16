@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CartComponent } from './components/cart/cart.component';
+import { CheckoutComponent } from './Components/checkout/checkout.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { DeatailCardComponent } from './Components/deatail-card/deatail-card.component';
 import { HomeComponent } from './components/home/home.component';
@@ -21,8 +22,10 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
 
   {path: 'registor', component: RegistorComponent},
-
+  
   {path: 'detailcard/:id', component: DeatailCardComponent},
+
+  {path: 'checkout', component: CheckoutComponent},
 ];
 
 @NgModule({
