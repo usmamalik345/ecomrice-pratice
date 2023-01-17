@@ -16,11 +16,11 @@
             <td class="col-sm-8 col-md-6">
               <div class="media">
                 <a class="thumbnail pull-left" href="#">
-                  <img
+                  <!-- <img
                     class="media-object"
                     src="{{ prod.category.image }}"
                     style="width: 72px; height: 72px"
-                  />
+                  /> -->
                 </a>
                 <div class="media-body">
                   <h4 class="media-heading">
@@ -38,7 +38,7 @@
                 class="form-control form-control-lg text-center"
                 name="quantity"
                 [(ngModel)]="prod.quantity"
-                (change)="calcTotals()"
+                (change)="incrementItem(prod.id, prod.quantity)"
               />
             </td>
             <td class="col-sm-1 col-md-1 text-center">
@@ -61,7 +61,7 @@
             <td><h5>Subtotal</h5></td>
             <td class="text-right">
               <h5>
-                <strong> ${{ totals }}</strong>
+                <strong> ${{ totals.withoutShipping }}</strong>
               </h5>
             </td>
           </tr>
@@ -83,7 +83,7 @@
             <td><h3>Total</h3></td>
             <td class="text-right">
               <h3>
-                <strong>${{ totalwithshippingcast }}</strong>
+                <strong>${{ totals.withShipping }}</strong>
               </h3>
             </td>
           </tr>
@@ -98,7 +98,11 @@
               </button>
             </td>
             <td>
-              <button type="button" class="btn btn-success" routerLink="/checkout" >
+              <button
+                type="button"
+                class="btn btn-success"
+                routerLink="/checkout"
+              >
                 Checkout <span class="glyphicon glyphicon-play"></span>
               </button>
             </td>

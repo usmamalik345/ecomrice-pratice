@@ -1,3 +1,5 @@
+
+
 <div class="container mt-5 px-5">
   <div class="mb-4">
     <h2>Confirm order and pay</h2>
@@ -119,7 +121,7 @@
       <div class="mt-4 mb-4 d-flex justify-content-between">
         <span>Previous step</span>
 
-        <button class="btn btn-success px-3">Pay $840</button>
+        <button class="btn btn-success px-3">Pay {{totals.withShipping}}</button>
       </div>
     </div>
 
@@ -127,8 +129,7 @@
       <div class="card card-blue p-3 text-white mb-3">
         <span>You have to pay</span>
         <div class="d-flex flex-row align-items-end mb-3">
-          <h1 class="mb-0 yellow">$549</h1>
-          <span>.99</span>
+          <h1 class="mb-0 yellow">${{totals.withShipping}}</h1>
         </div>
 
         <span

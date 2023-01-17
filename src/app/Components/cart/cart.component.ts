@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ProductsService } from 'src/app/service/books.service';
+import { TotalAmoutService } from 'src/app/service/total-amout.service';
 
 @Component({
   selector: 'app-cart',
@@ -9,40 +11,33 @@ import { ProductsService } from 'src/app/service/books.service';
 export class CartComponent implements OnInit {
   products: any = [];
   count: number = 0;
-  totalss = 0;
+  totalsss = 0;
   sum = 0;
   isButtonVisible = true;
-  totals = 0;
-  shippingCost = 10
-  totalwithshippingcast = 0
-  cartEmpty = false
-  constructor(private ProductsService: ProductsService) {}
+  totals: any;
+  shippingCost = 10;
+  cartEmpty = false;
+  constructor(
+    private ProductsService: ProductsService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.ProductsService.cart.subscribe((products) => {
       this.count = products.length;
-    });
-    this.getCartProducts();
-  }
-
-  getCartProducts() {
-    this.ProductsService.cart.subscribe((products: any) => {
       this.products = products;
-      this.calcTotals();
+    });
+    this.ProductsService.totals.subscribe((totals) => {
+      this.totals = totals;
+     
+      console.log(totals);
+  
+      
+      
     });
   }
 
-  public calcTotals() {
-    console.log(123);
-    this.totals = this.products.reduce(
-      (carry: number, item: any) => (carry += item.price * item.quantity ),
-      0
-    );
-
-
-    this.totalwithshippingcast = this.totals + this.shippingCost
-      
-  }
+  changeItemAmount(i: number, quantity: number) {}
 
   removeFromCart(items: any) {
     this.ProductsService.removeProductFromCart(items);
@@ -53,9 +48,9 @@ export class CartComponent implements OnInit {
     this.isButtonVisible = false;
   }
 
-  incrementItem(item: any) {
-    // this.sum = this.totals + (this.products *   )
-    item.quantity++;
-    this.calcTotals();
+  incrementItem(id: number, quantity: number) {
+    this.ProductsService.changeItemAmount(id, quantity);
+
+    
   }
 }
