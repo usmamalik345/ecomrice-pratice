@@ -6,6 +6,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { DeatailCardComponent } from './Components/deatail-card/deatail-card.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './Components/login/login.component';
+import { OrderCompleteComponent } from './Components/order-complete/order-complete.component';
 import { RegistorComponent } from './Components/registor/registor.component';
 
 const routes: Routes = [
@@ -26,6 +27,8 @@ const routes: Routes = [
   {path: 'detailcard/:id', component: DeatailCardComponent},
 
   {path: 'checkout', component: CheckoutComponent},
+
+  {path: 'ordercomplete', component: OrderCompleteComponent},
 ];
 
 @NgModule({

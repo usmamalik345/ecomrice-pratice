@@ -119,15 +119,15 @@
       </div>
 
       <div class="mt-4 mb-4 d-flex justify-content-between">
-        <span>Previous step</span>
+        <span routerLink="/cart">Previous step</span>
 
-        <button class="btn btn-success px-3">Pay {{totals.withShipping}}</button>
+        <button class="btn btn-success px-3" routerLink="/ordercomplete">Pay {{totals.withShipping}}</button>
       </div>
     </div>
 
     <div class="col-md-4">
       <div class="card card-blue p-3 text-white mb-3">
-        <span>You have to pay</span>
+        <span style="cursor: pointer;">You have to pay</span>
         <div class="d-flex flex-row align-items-end mb-3">
           <h1 class="mb-0 yellow">${{totals.withShipping}}</h1>
         </div>
