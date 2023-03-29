@@ -14,13 +14,14 @@ export class DeatailCardComponent implements OnInit {
   constructor(private productService: ProductsService , private route : ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.params['id']
+    this.id = this.route.snapshot.params['_id']
     this.getSelectedProduct()
     
   }
   getSelectedProduct( ) {
     this.productService.getSelectedProduct(this.id).subscribe((data: any) => {
      this.selectproduct = data
+      console.log("🚀 ~ file: deatail-card.component.ts:24 ~ DeatailCardComponent ~ this.productService.getSelectedProduct ~ data:", data)
       
     });
   }

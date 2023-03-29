@@ -19,7 +19,7 @@ export class ProductsService {
   public productList = new BehaviorSubject<any>([]);
   // public cartCount = new BehaviorSubject<number>(5);
 
-  url: string = 'https://fakestoreapi.com/products';
+  url: string = 'http://localhost:3000/products';
 
   constructor(
     private http: HttpClient,
