@@ -7,7 +7,7 @@ var cors = require("cors");
 
 const app = express();
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:60342");
 
   res.setHeader("Access-Control-Allow-Credentials", true);
   next();
@@ -59,10 +59,14 @@ router.get("/products", async (req, res) => {
   res.json(products);
 });
 
-app.get("/products/:id", function (req, res) {
+router.get("/products/:id", async (req, res) => {
   const productId = req.params.id;
-  const productData = // code to retrieve product data from a database goes here
-    res.render("product", { product: productData });
+  const product = await ProductModel.findById(productId);
+  if (product) {
+    res.json(product);
+  } else {
+    res.status(404).json({ message: "Product not found" });
+  }
 });
 
 router.delete("/products/:id", async (req, res) => {

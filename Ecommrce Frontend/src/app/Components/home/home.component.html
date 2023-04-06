@@ -1,29 +1,39 @@
-
-<div id="cardbody">
-  <div class="card rounded shadow-sm border-0 " *ngFor="let products of homeProducts let i = index "
-    style="width: 600px; margin-top: 10px; " [routerLink]="[ '/detailcard', products._id ]">
-    <div class="card-body p-4"><img src="{{ products.image }}" alt="" class="img-fluid d-block mx-auto mb-3"
-        style="width: 100px; height: 100px;">
-      <h5> <a class="text-dark"> {{ products.title }}</a></h5>
-      <p class="small text-muted font-italic"> {{ products.description }}</p>
-      <p class="text-dark" style="font-size: large; font-weight: 900; font-family: Arial, Helvetica, sans-serif;"> {{
-        products.price }} $ </p>
-      <!-- <ul id="idList" style="display: flex; flex-direction: row; list-style: none;">
-        <li [ngClass]="{'text-warning': 1 <= products.rating.rate}"><i class="fa-sharp fa-solid fa-star"></i></li>
-        <li [ngClass]="{'text-warning': 2 <= products.rating.rate}"><i class="fa-sharp fa-solid fa-star"></i></li>
-        <li [ngClass]="{'text-warning': 3 <= products.rating.rate}"><i class="fa-sharp fa-solid fa-star"></i></li>
-        <li [ngClass]="{'text-warning': 4 <= products.rating.rate}"><i class="fa-sharp fa-solid fa-star"></i></li>
-        <li [ngClass]="{'text-warning': 5 <= products.rating.rate}"><i class="fa-sharp fa-solid fa-star"></i></li>
-
-
-      </ul> -->
-      <!-- <div class="card-read-more">
-        <button class="btn" style="color: black; font-size: 20px; font-weight: 600;" (click)="addToCart(products)">
-          Add To Cart
-        </button>
-      </div> -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div id="cardbody">
+        <div class="card rounded-4 cursor-pointer overflow-hidden shadow-sm border-0 " *ngFor="let products of homeProducts; let i = index" style="width: 600px; margin-top: 10px; "  [routerLink]="[ '/detailcard', products._id ]">
+          <div
+          [style.backgroundImage]="'url('+products.image+')'"
+          style="
+    height: 400px;
+    width: 600px;
+    background-position-x: center;
+    background-position-y: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+"></div>
+          <div class="card-body p-4">
+            <h5 class="card-title">{{ products.title }}</h5>
+            <p class="card-text text-dark font-weight-bold" style="font-size: large; font-family: Arial, Helvetica, sans-serif; font-weight: 800; ">$ {{ products.price }}</p>
+            <p class="card-text small text-muted font-italic">{{ products.description }}</p>
+            <!-- Uncomment this block to display ratings -->
+            <!-- <ul id="idList" style="display: flex; flex-direction: row; list-style: none;">
+              <li [ngClass]="{'text-warning': 1 <= products.rating.rate}"><i class="fa-sharp fa-solid fa-star"></i></li>
+              <li [ngClass]="{'text-warning': 2 <= products.rating.rate}"><i class="fa-sharp fa-solid fa-star"></i></li>
+              <li [ngClass]="{'text-warning': 3 <= products.rating.rate}"><i class="fa-sharp fa-solid fa-star"></i></li>
+              <li [ngClass]="{'text-warning': 4 <= products.rating.rate}"><i class="fa-sharp fa-solid fa-star"></i></li>
+              <li [ngClass]="{'text-warning': 5 <= products.rating.rate}"><i class="fa-sharp fa-solid fa-star"></i></li>
+            </ul> -->
+            <!-- Uncomment this block to display the add to cart button -->
+            <!-- <div class="card-read-more">
+              <button class="btn btn-primary" (click)="addToCart(products)">Add To Cart</button>
+            </div> -->
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-
 </div>
+
 <router-outlet></router-outlet>

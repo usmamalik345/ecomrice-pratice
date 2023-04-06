@@ -61,12 +61,8 @@ export class ProductsService {
   }
 
   EmptytheCart() {
-    let clearCart = this.cart.value;
-    clearCart = [];
-    this.cart.next(clearCart);
+    this.cart.next([]);
   }
-
- 
 
   public calcTotals() {
     const totals = this.cart.value.reduce(
@@ -84,9 +80,7 @@ export class ProductsService {
   changeItemAmount(id: number, quantity: number) {
     let cartValues = this.cart.value;
 
-    let exists = cartValues.find(
-      (eachProduct: any) => eachProduct.id == id
-    );
+    let exists = cartValues.find((eachProduct: any) => eachProduct.id == id);
 
     if (exists) {
       exists.quantity = quantity;

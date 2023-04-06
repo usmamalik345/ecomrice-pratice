@@ -27,13 +27,11 @@ export class CartComponent implements OnInit {
       this.count = products.length;
       this.products = products;
     });
+
     this.ProductsService.totals.subscribe((totals) => {
       this.totals = totals;
-     
+
       console.log(totals);
-  
-      
-      
     });
   }
 
@@ -50,7 +48,5 @@ export class CartComponent implements OnInit {
 
   incrementItem(id: number, quantity: number) {
     this.ProductsService.changeItemAmount(id, quantity);
-
-    
   }
 }
