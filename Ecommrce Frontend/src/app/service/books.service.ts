@@ -33,6 +33,7 @@ export class ProductsService {
       .pipe(tap(() => this.spinnerService.requestEnded()));
   }
 
+
   getSelectedProduct(id: any) {
     return this.http.get(this.url + '/' + id);
   }
@@ -52,6 +53,9 @@ export class ProductsService {
     this.cart.next(cartValues);
     this.calcTotals();
   }
+  getCartCount() {
+    return this.cart.asObservable();
+  }
 
   removeProductFromCart(index: any) {
     let cartValues = this.cart.value;
@@ -65,15 +69,18 @@ export class ProductsService {
   }
 
   public calcTotals() {
-    const totals = this.cart.value.reduce(
-      (carry: number, item: any) => (carry += item.price * item.quantity),
-      0
+    const totals = Math.round(
+      this.cart.value.reduce(
+        (carry: number, item: any) => (carry += item.price * item.quantity),
+        0
+      )
     );
-    const totalwithshippingcast = totals + this.shippingCost;
+
+    const totalwithshippingcast = Math.round(totals + this.shippingCost);
 
     this.totals.next({
       withShipping: totalwithshippingcast,
-      withoutShipping: totals,
+      withoutShipping: Math.round(totals),
     });
   }
 

@@ -57,3 +57,17 @@
     box-shadow: none;
     border:none;
 }
+
+/* In your component's CSS file */
+.cart-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  background-color: #000;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: bold;
+}

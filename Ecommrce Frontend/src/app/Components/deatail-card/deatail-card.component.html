@@ -1,4 +1,4 @@
-<section class="dark">
+<!-- <section class="dark">
 	<div class="container py-4">
 		<h1 class="h1 text-center" id="pageHeaderTitle"></h1>
 
@@ -18,4 +18,30 @@
 			</div>
 		</article>
 	</div>
-</section>
+</section> -->
+
+<div class="container d-flex justify-content-center">
+     <figure class="card card-product-grid card-lg"> <a href="#" class="img-wrap" data-abc="true"> <img src="{{selectproduct.image}}"> </a>
+         <figcaption class="info-wrap">
+             <div class="row">
+                 <div class="col-md-9 col-xs-9"> <a href="#" class="title" data-abc="true">{{selectproduct.title}}</a> <span class="rated" style="font-size: 15px;"> {{selectproduct.description}}</span> </div>
+                 <div class="col-md-3 col-xs-3">
+                     <div class="rating text-right"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <span class="rated">Rated 4.0/5</span> </div>
+                 </div>
+             </div>
+         </figcaption>
+         <div class="bottom-wrap-payment">
+             <figcaption class="info-wrap">
+                 <div class="row">
+                     <div class="col-md-9 col-xs-9"> <a href="#" class="title" data-abc="true"><strong>$</strong>{{selectproduct.price}}</a> <span class="rated">VISA Platinum</span> </div>
+                     <div class="col-md-3 col-xs-3">
+                         <div class="rating text-right"> #### 8787 </div>
+                     </div>
+                 </div>
+             </figcaption>
+         </div>
+         <div class="bottom-wrap"  (click)="addToCartselectproduct()"> <a  class="btn btn-primary float-right" data-abc="true" > Buy now </a>
+             <div class="price-wrap"> <a href="#" class="btn btn-warning float-left" data-abc="true"> Cancel </a> </div>
+         </div>
+     </figure>
+ </div>

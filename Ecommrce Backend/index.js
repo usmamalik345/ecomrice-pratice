@@ -7,7 +7,7 @@ var cors = require("cors");
 
 const app = express();
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:60342");
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
 
   res.setHeader("Access-Control-Allow-Credentials", true);
   next();
@@ -57,6 +57,17 @@ router.post("/products", async (req, res) => {
 router.get("/products", async (req, res) => {
   const products = await ProductModel.find();
   res.json(products);
+});
+
+app.post("/products/search", async (req, res) => {
+  const { searchTerm } = req.body;
+  const matchingProducts = await ProductModel.find({
+    $or: [
+      { name: { $regex: searchTerm, $options: "i" } },
+      { description: { $regex: searchTerm, $options: "i" } },
+    ],
+  });
+  res.json(matchingProducts);
 });
 
 router.get("/products/:id", async (req, res) => {

@@ -30,7 +30,7 @@ export class CartComponent implements OnInit {
 
     this.ProductsService.totals.subscribe((totals) => {
       this.totals = totals;
-
+      
       console.log(totals);
     });
   }

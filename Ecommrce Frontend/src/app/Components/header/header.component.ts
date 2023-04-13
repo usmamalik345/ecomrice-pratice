@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ProductsService } from 'src/app/service/books.service';
 import { SearchService } from 'src/app/service/search.service';
 
@@ -10,11 +10,11 @@ import { SearchService } from 'src/app/service/search.service';
 export class HeaderComponent implements OnInit {
   searchfilter = '';
   homeProducts: any;
-
+  products: any;
+  count: any;
   constructor(
     private ProductsService: ProductsService,
-    public searchService: SearchService,
-    
+    public searchService: SearchService
   ) {
     // this.ProductsService.addProductToCart()
     // this.ProductsService.cartCount.subscribe((res) => {
@@ -23,12 +23,18 @@ export class HeaderComponent implements OnInit {
     // this.ProductsService.cartCount.next(this.count)
   }
 
-  ngOnInit(): void {}
-
-  search(event: any) {
-    this.searchService.search(event?.target?.value)
-
-    
+  ngOnInit(): void {
+    this.ProductsService.cart.subscribe((products) => {
+      let count = 0;
+      for (let i = 0; i < products.length; i++) {
+        count += products[i].quantity;
+      }
+      this.count = count;
+      this.products = products;
+      console.log('Cart products:', products);
+    });
   }
- 
+  search(event: any) {
+    this.searchService.search(event?.target?.value);
+  }
 }
