@@ -43,16 +43,28 @@
             <div class="form">
               <i class="fa fa-search"></i>
 
-              <input type="text"    placeholder="Search anything..."
-                class="form-control form-input"  (input)="search(searchfilter)">
+              <input type="text" [(ngModel)]="searchQuery" (input)="filterProducts()">
                 
               <span class="left-pan"><i class="fa fa-microphone"></i></span>
-            </div>
 
+
+             
+            </div>
+               <ul class="product-list" >
+                    <li *ngFor="let product of filteredProducts"  >
+                      <a [routerLink]="[ '/detailcard', product._id]"></a>
+                      <div class="product-details">
+                        <img class="product-image" [src]="product.image" alt="Product Image">
+                        <div class="product-info">
+                          <div class="product-name">{{ product.title }}</div>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
           </div>
 
         </div>
-
+                
       </div>
 
 
@@ -64,3 +76,5 @@
 
   </div>
 </nav>
+
+

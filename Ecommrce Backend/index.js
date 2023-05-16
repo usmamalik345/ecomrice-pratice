@@ -86,6 +86,26 @@ router.delete("/products/:id", async (req, res) => {
   res.send("Product deleted successfully");
 });
 
+router.get("/products",  async (req, res) => {
+  //const _ispublished = req.query.published;
+  const match = {};
+
+  if (req.query.published) {
+    match.published = req.query.published === "true";
+  }
+  try {
+    await req.user
+      .populate({
+        path: "posts",
+        match,
+      })
+      .execPopulate();
+    res.send(req.user.posts);
+  } catch (error) {
+    res.status(500).send();
+  }
+});
+
 async function createProduct(name, description, price, image) {
   await ProductModel.create({ name, description, price, image });
 }
