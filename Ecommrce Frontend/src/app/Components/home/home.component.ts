@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ProductsService } from 'src/app/service/books.service';
 import { ReviewService } from 'src/app/service/review.service';
 import { SearchService } from 'src/app/service/search.service';
 import { Route, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +17,6 @@ export class HomeComponent implements OnInit {
   ratingArr: boolean[] = [];
   selectedValue: number = 0;
   searchText: string = '';
-  
 
   constructor(
     private productService: ProductsService,
@@ -30,18 +30,12 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAllProducts();
-   this.searchText.toLocaleLowerCase()
-  }
-  // deatailpage(id: any) {
-  //   this.router.navigate(['/detailcard/' + id]);
-  // }
-  getAllProducts() {
-    this.productService.getAllProducts().subscribe((data: any) => {
-      this.homeProducts = data;
+    this.productService.dataSubject.subscribe((res) => {
+      this.homeProducts = res;
     });
+
+    this.productService.getAllProducts().subscribe();
   }
-  
 
   addToCart(product: any) {
     this.productService.addProductToCart(product);

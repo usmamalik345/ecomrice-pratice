@@ -9,7 +9,8 @@ import { SpinnerService } from './spinner.service';
   providedIn: 'root',
 })
 export class ProductsService {
-  products: any = [];
+  private search = '';
+  allProducts: any = [];
   shippingCost = 10;
   public cart = new BehaviorSubject<any>([]);
   public totals = new BehaviorSubject<{
@@ -21,18 +22,37 @@ export class ProductsService {
 
   url: string = 'http://localhost:3000/products';
 
+  public dataSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+  public data$: Observable<any[]> = this.dataSubject.asObservable();
+
   constructor(
     private http: HttpClient,
     private spinnerService: SpinnerService
   ) {}
 
   getAllProducts() {
-    this.spinnerService.requestStart();
-    return this.http
-      .get(this.url)
-      .pipe(tap(() => this.spinnerService.requestEnded()));
+    return this.http.get<any[]>(this.url).pipe(
+      tap((data) => {
+        this.allProducts = data;
+        this.dataSubject.next(data);
+      })
+    );
   }
 
+  searchProduct(search: string) {
+    if (!search) {
+      this.dataSubject.next(this.allProducts);
+    }
+
+    const filteredProducts = this.allProducts.filter(
+      (product: { title: string; description: string }) =>
+        (product.title && product.title.toLowerCase().includes(search)) ||
+        (product.description &&
+          product.description.toLowerCase().includes(search))
+    );
+
+    this.dataSubject.next(filteredProducts);
+  }
 
   getSelectedProduct(id: any) {
     return this.http.get(this.url + '/' + id);
@@ -53,6 +73,7 @@ export class ProductsService {
     this.cart.next(cartValues);
     this.calcTotals();
   }
+
   getCartCount() {
     return this.cart.asObservable();
   }
