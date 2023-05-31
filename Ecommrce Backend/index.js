@@ -33,20 +33,6 @@ async function main() {
     });
 }
 
-// router.get("/products", async (req, res) => {
-
-//   await ProductModel.create({
-//     name: "Me Is Ussama",
-//     description: "Junior Developer",
-//     price: 15000,
-//     image:
-//       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBJSsDFB9dhoKSKDa9Xc69KAaJdKsZPGtPX3YS_-ZN&s",
-//   });
-
-//   const products = await ProductModel.find();
-//   res.json(products);
-// });
-
 router.post("/products", async (req, res) => {
   const { name, description, price, image } = req.body;
   await createProduct(name, description, price, image);
@@ -54,9 +40,38 @@ router.post("/products", async (req, res) => {
   res.json(products);
 });
 
-router.get("/products", async (req, res) => {
-  const products = await ProductModel.find();
-  res.json(products);
+router.get('/products', async (req, res) => {
+  const page = parseInt(req.query.page) || 1; // Get the page number from the query parameters
+  const limit = parseInt(req.query.limit) || 3; // Get the limit (number of items per page) from the query parameters
+
+  try {
+    // Count the total number of products
+    const totalProductsCount = await ProductModel.countDocuments();
+
+    // Calculate the number of pages based on the total products count and the limit
+    const totalPages = Math.ceil(totalProductsCount / limit);
+
+    // Calculate the starting index of products for the current page
+    const startIndex = (page - 1) * limit;
+
+    // Fetch the paginated products from the database
+    const products = await ProductModel.find()
+      .skip(startIndex)
+      .limit(limit);
+
+    // Create a pagination object to send in the response
+    const pagination = {
+      totalProductsCount,
+      totalPages,
+      currentPage: page,
+    };
+
+    // Send the paginated products and pagination object as a response
+    res.json({ products, pagination });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
 });
 
 app.post("/products/search", async (req, res) => {

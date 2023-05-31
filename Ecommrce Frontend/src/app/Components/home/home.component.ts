@@ -11,6 +11,8 @@ import { Observable } from 'rxjs';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+  products: any[] = [];
+  pagination: any = {};
   homeProducts: any = [];
   rating = 0;
   starCount = 5;
@@ -30,13 +32,21 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.productService.dataSubject.subscribe((res) => {
-      this.homeProducts = res;
+    // this.productService.dataSubject.subscribe((res) => {
+    //   this.homeProducts = res;
+    // });
+
+    this.productService.getAllProducts().subscribe((data: any) => {
+      this.products = data.products;
+      this.pagination = data.pagination;
     });
-
-    this.productService.getAllProducts().subscribe();
   }
-
+  goToPage(page: number) {
+    if (page >= 1 && page <= this.pagination.totalPages) {
+      this.pagination.currentPage = page;
+      this.productService.getAllProducts();
+    }
+  }
   addToCart(product: any) {
     this.productService.addProductToCart(product);
   }

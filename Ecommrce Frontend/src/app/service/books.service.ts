@@ -34,6 +34,7 @@ export class ProductsService {
     return this.http.get<any[]>(this.url).pipe(
       tap((data) => {
         this.allProducts = data;
+        console.log("🚀 ~ file: books.service.ts:37 ~ ProductsService ~ tap ~ data:", data)
         this.dataSubject.next(data);
       })
     );
@@ -62,7 +63,7 @@ export class ProductsService {
     let cartValues = this.cart.value;
 
     let exists = cartValues.find(
-      (eachProduct: any) => eachProduct.id == product.id
+      (eachProduct: any) => eachProduct._id == product._id
     );
 
     if (exists) {

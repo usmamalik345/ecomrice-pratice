@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-12">
       <div id="cardbody">
-        <div class="card rounded-4 cursor-pointer overflow-hidden shadow-sm border-0 " *ngFor="let products of homeProducts; let i = index" style="width: 600px; margin-top: 10px; "  [routerLink]="[ '/detailcard', products._id ]">
+        <div class="card rounded-4 cursor-pointer overflow-hidden shadow-sm border-0 " *ngFor="let products of  products" style="width: 600px; margin-top: 10px; "  [routerLink]="[ '/detailcard', products._id ]">
           <div
           [style.backgroundImage]="'url('+products.image+')'"
           style="
@@ -35,5 +35,9 @@
     </div>
   </div>
 </div>
-
+  <div>
+  <button (click)="goToPage(pagination.currentPage - 1)" [disabled]="pagination.currentPage === 1">Previous</button>
+  <span>{{ pagination.currentPage }}</span>
+  <button (click)="goToPage(pagination.currentPage + 1)" [disabled]="pagination.currentPage === pagination.totalPages">Next</button>
+</div>
 <router-outlet></router-outlet>
