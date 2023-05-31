@@ -35,7 +35,9 @@ export class ProductsService {
       tap((data) => {
         this.allProducts = data;
         console.log("🚀 ~ file: books.service.ts:37 ~ ProductsService ~ tap ~ data:", data)
+        
         this.dataSubject.next(data);
+        console.log("🚀 ~ file: books.service.ts:39 ~ ProductsService ~ tap ~ this.dataSubject.next(data);:", this.dataSubject.next(data))
       })
     );
   }
