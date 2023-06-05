@@ -36,8 +36,12 @@ export class HomeComponent implements OnInit {
     //   this.homeProducts = res;
     // });
     this.filteredProducts$ = this.productService.getFilteredProducts();
-    
+
     this.productService.getAllProducts().subscribe((data: any) => {
+      console.log(
+        '🚀 ~ file: home.component.ts:41 ~ HomeComponent ~ this.productService.getAllProducts ~ data:',
+        data
+      );
       this.products = data.products;
       this.pagination = data.pagination;
     });
@@ -45,7 +49,13 @@ export class HomeComponent implements OnInit {
   goToPage(page: number) {
     if (page >= 1 && page <= this.pagination.totalPages) {
       this.pagination.currentPage = page;
-      this.productService.getAllProducts();
+      this.productService
+        .getAllProducts(this.pagination.currentPage)
+        .subscribe((data: any) => {
+          console.log('Data:', data);
+          this.products = data.products;
+          this.pagination = data.pagination;
+        });
     }
   }
   addToCart(product: any) {

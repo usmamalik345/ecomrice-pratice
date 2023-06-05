@@ -33,17 +33,16 @@ export class ProductsService {
   constructor(
     private http: HttpClient,
     private spinnerService: SpinnerService
-  ) { }
+  ) {}
 
-  getAllProducts(): Observable<ProductData> {
-    return this.http.get<ProductData>(this.url).pipe(
+  getAllProducts(page?: number): Observable<ProductData> {
+    const url = page ? `${this.url}?page=${page}` : this.url;
+    return this.http.get<ProductData>(url).pipe(
       tap((data: ProductData) => {
         this.allProducts = data.products;
-        console.log(
-          '🚀 ~ file: books.service.ts:44 ~ ProductsService ~ tap ~ data.products:',
-          data.products
-        );
+        console.log('Products:', this.allProducts);
         this.filteredProductsSubject.next(this.allProducts);
+  
       })
     );
   }

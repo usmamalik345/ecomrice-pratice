@@ -42,7 +42,7 @@ router.post("/products", async (req, res) => {
 
 router.get('/products', async (req, res) => {
   const page = parseInt(req.query.page) || 1; // Get the page number from the query parameters
-  const limit = parseInt(req.query.limit) || 3; // Get the limit (number of items per page) from the query parameters
+  const limit = parseInt(req.query.limit) ||3; // Get the limit (number of items per page) from the query parameters
 
   try {
     // Count the total number of products
