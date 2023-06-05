@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   ratingArr: boolean[] = [];
   selectedValue: number = 0;
   searchText: string = '';
-
+  filteredProducts$: Observable<any[]> | any;
   constructor(
     private productService: ProductsService,
     private searchService: SearchService,
@@ -35,7 +35,8 @@ export class HomeComponent implements OnInit {
     // this.productService.dataSubject.subscribe((res) => {
     //   this.homeProducts = res;
     // });
-
+    this.filteredProducts$ = this.productService.getFilteredProducts();
+    
     this.productService.getAllProducts().subscribe((data: any) => {
       this.products = data.products;
       this.pagination = data.pagination;

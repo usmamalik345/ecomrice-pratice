@@ -4,7 +4,14 @@ import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { map, scan, tap } from 'rxjs/operators';
 import { catchError, retry } from 'rxjs/operators';
 import { SpinnerService } from './spinner.service';
-
+interface ProductData {
+  products: any[];
+  pagination: {
+    totalProductsCount: number;
+    totalPages: number;
+    currentPage: number;
+  };
+}
 @Injectable({
   providedIn: 'root',
 })
@@ -21,41 +28,55 @@ export class ProductsService {
   // public cartCount = new BehaviorSubject<number>(5);
 
   url: string = 'http://localhost:3000/products';
-
-  public dataSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
-  public data$: Observable<any[]> = this.dataSubject.asObservable();
+  private filteredProductsSubject = new BehaviorSubject<any[]>([]);
 
   constructor(
     private http: HttpClient,
     private spinnerService: SpinnerService
-  ) {}
+  ) { }
 
-  getAllProducts() {
-    return this.http.get<any[]>(this.url).pipe(
-      tap((data) => {
-        this.allProducts = data;
-        console.log("🚀 ~ file: books.service.ts:37 ~ ProductsService ~ tap ~ data:", data)
-        
-        this.dataSubject.next(data);
-        console.log("🚀 ~ file: books.service.ts:39 ~ ProductsService ~ tap ~ this.dataSubject.next(data);:", this.dataSubject.next(data))
+  getAllProducts(): Observable<ProductData> {
+    return this.http.get<ProductData>(this.url).pipe(
+      tap((data: ProductData) => {
+        this.allProducts = data.products;
+        console.log(
+          '🚀 ~ file: books.service.ts:44 ~ ProductsService ~ tap ~ data.products:',
+          data.products
+        );
+        this.filteredProductsSubject.next(this.allProducts);
       })
     );
   }
 
-  searchProduct(search: string) {
-    if (!search) {
-      this.dataSubject.next(this.allProducts);
-    }
-
-    const filteredProducts = this.allProducts.filter(
-      (product: { title: string; description: string }) =>
-        (product.title && product.title.toLowerCase().includes(search)) ||
-        (product.description &&
-          product.description.toLowerCase().includes(search))
+  searchProducts(searchfilter: string) {
+    const filteredProducts = this.allProducts.filter((product: any) =>
+      product.title.toLowerCase().includes(searchfilter.toLowerCase())
     );
-
-    this.dataSubject.next(filteredProducts);
+    console.log(
+      '🚀 ~ file: books.service.ts:57 ~ ProductsService ~ searchProducts ~ filteredProducts:',
+      filteredProducts
+    );
+    this.filteredProductsSubject.next(filteredProducts);
   }
+
+  getFilteredProducts() {
+    return this.filteredProductsSubject.asObservable();
+  }
+
+  // searchProduct(search: string) {
+  //   if (!search) {
+  //     this.dataSubject.next(this.allProducts);
+  //   }
+
+  //   const filteredProducts = this.allProducts.filter(
+  //     (product: { title: string; description: string }) =>
+  //       (product.title && product.title.toLowerCase().includes(search)) ||
+  //       (product.description &&
+  //         product.description.toLowerCase().includes(search))
+  //   );
+
+  //   this.dataSubject.next(filteredProducts);
+  // }
 
   getSelectedProduct(id: any) {
     return this.http.get(this.url + '/' + id);

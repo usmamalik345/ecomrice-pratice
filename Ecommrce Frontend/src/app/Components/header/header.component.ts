@@ -43,8 +43,12 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  filterProducts(): void {
-    let text = (this.searchText || '').toLowerCase().trim();
-    this.ProductsService.searchProduct(text);
+  search() {
+    this.ProductsService.searchProducts(this.searchfilter);
   }
+
+  // filterProducts(): void {
+  //   let text = (this.searchText || '').toLowerCase().trim();
+  //   this.ProductsService.searchProduct(text);
+  // }
 }
